@@ -31,24 +31,28 @@ class Browser(QDialog, Ui_Dialog):
         self.setupUi(self)
 
         # init attributes
-        # TODO
+        self.ok_button = self.buttonBox.button(QDialogButtonBox.Ok)
+        self.ok_button.setEnabled(False)
+        self._filename = ''
 
         # custom settings for widgets
         # TODO
 
         # connect
-        # TODO
+        self.pushButton.clicked.connect(self.__browse)
 
     # -------------------------------------------------------------------------
     @property
     def filename(self):
-        # TODO
+        return self._filename
         pass
 
     # -------------------------------------------------------------------------
     @filename.setter
     def filename(self, filename):
-        # TODO
+        self._filename = filename
+        if self._filename != '':
+            self.ok_button.setEnabled(True)
         pass
 
     # -------------------------------------------------------------------------
@@ -71,5 +75,6 @@ class Browser(QDialog, Ui_Dialog):
 
     # -------------------------------------------------------------------------
     def __browse(self):
-        # TODO
+        self.filename = QFileDialog.getOpenFileName(self, 'Open file', '/home', 'CSV (*.csv)')
+        self.lineEdit.setText(self.filename)
         pass
