@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'browse.ui'
+# Form implementation generated from reading ui file 'browse_dialog.ui'
 #
 # Created: Tue Apr 26 15:15:27 2016
 #      by: PyQt4 UI code generator 4.10.4

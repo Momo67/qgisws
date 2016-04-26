@@ -15,11 +15,12 @@ from PyQt4.QtGui import QDialogButtonBox
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtCore import QDir
 from PyQt4.QtCore import pyqtSignal
+from browse_dialog import Ui_Dialog
 
 # -----------------------------------------------------------------------------
 # classes
 # -----------------------------------------------------------------------------
-class Browser(QDialog, ban_ui.Ui_Browser):
+class Browser(QDialog, Ui_Dialog):
 
     # -------------------------------------------------------------------------
     # public methods
