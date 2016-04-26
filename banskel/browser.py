@@ -40,6 +40,7 @@ class Browser(QDialog, Ui_Dialog):
 
         # connect
         self.pushButton.clicked.connect(self.__browse)
+        self.ok_button.clicked.connect(self.__ok)
 
     # -------------------------------------------------------------------------
     @property
@@ -70,7 +71,11 @@ class Browser(QDialog, Ui_Dialog):
 
     # -------------------------------------------------------------------------
     def __ok(self):
-        # TODO
+        my_file = open(self.filename, 'r')
+        nb_line = 0
+        while my_file.readline():
+            nb_line += 1
+        print('Nombre de lignes du fichier', nb_line)
         pass
 
     # -------------------------------------------------------------------------
