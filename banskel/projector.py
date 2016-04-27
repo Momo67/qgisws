@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals, print_function, absolute_import, division
+#from __future__ import unicode_literals, print_function, absolute_import, division
 
 # -----------------------------------------------------------------------------
 # imports
@@ -16,8 +16,15 @@ import os
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 def count_lines(filename):
-    # TODO
-    pass
+    my_file = open(filename, 'r')
+    nblines = 0
+    while my_file.readline():
+        nblines += 1
+
+    my_file.close()
+
+    return nblines
+
 
 # -----------------------------------------------------------------------------
 def reproject(x, y, source_srid, dest_srid):
@@ -29,7 +36,11 @@ def reproject(x, y, source_srid, dest_srid):
 
 # -----------------------------------------------------------------------------
 def transform_csv(filename, separator=','):
-    # TODO
+    my_file = open(filename, 'r')
+    headers = my_file.readline()
+    for line in my_file:
+        (id, numero, voie, cp, ville, source, y, x) = line.split(separator)
+        print 'x, y:', x, y
     pass
 
 # -----------------------------------------------------------------------------

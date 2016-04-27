@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals, print_function, absolute_import, division
+#from __future__ import unicode_literals, print_function, absolute_import, division
 
 
 # -----------------------------------------------------------------------------
@@ -16,6 +16,8 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtCore import QDir
 from PyQt4.QtCore import pyqtSignal
 from browse_dialog import Ui_Dialog
+from progressbar import ProgressBar
+from projector import *
 
 # -----------------------------------------------------------------------------
 # classes
@@ -34,6 +36,9 @@ class Browser(QDialog, Ui_Dialog):
         self.ok_button = self.buttonBox.button(QDialogButtonBox.Ok)
         self.ok_button.setEnabled(False)
         self._filename = ''
+        self.nblines = 0
+        self.my_progressbar = ProgressBar()
+        self.my_progressbar.setProgress(0)
 
         # custom settings for widgets
         # TODO
@@ -46,7 +51,6 @@ class Browser(QDialog, Ui_Dialog):
     @property
     def filename(self):
         return self._filename
-        pass
 
     # -------------------------------------------------------------------------
     @filename.setter
@@ -54,7 +58,6 @@ class Browser(QDialog, Ui_Dialog):
         self._filename = filename
         if self._filename != '':
             self.ok_button.setEnabled(True)
-        pass
 
     # -------------------------------------------------------------------------
     # private methods
@@ -71,15 +74,10 @@ class Browser(QDialog, Ui_Dialog):
 
     # -------------------------------------------------------------------------
     def __ok(self):
-        my_file = open(self.filename, 'r')
-        nb_line = 0
-        while my_file.readline():
-            nb_line += 1
-        print('Nombre de lignes du fichier', nb_line)
-        pass
+        nb_lies = count_lines(self.filename)
+        transform_csv(self.filename, ',')
 
     # -------------------------------------------------------------------------
     def __browse(self):
         self.filename = QFileDialog.getOpenFileName(self, 'Open file', '/home', 'CSV (*.csv)')
         self.lineEdit.setText(self.filename)
-        pass
